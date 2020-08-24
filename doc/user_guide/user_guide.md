@@ -66,14 +66,16 @@ log.set_client_name("my-script 1.3.0")
 
 `exasollog` supports the following log levels:
 
-<dt>`NONE`</dt><dd>no log entries are generated on this level.</dd>
-<dt>`FATAL`</dt><dd>should be used for in cases of errors that require immediate program termination.</dd>
-<dt>`ERROR`</dt><dd>is best used in cases where the calling code should be given a chance to deal with the error or at least clean up before termination.</dd>
-<dt>`WARN`</dt><dd>stands for situations that don't have an immediate adverse effect, but might cause an error later.</dd>
-<dt>`INFO`</dt><dd>is for sparse log information that you want to appear in a standard log. This is also the default log level.</dd>
-<dt>`CONFIG`</dt><dd>should be used to log parameters and environment of the client.</dd>
-<dt>`DEBUG`</dt><dd>is targeted at developers when trying to analyze problems.</dd>
-<dt>`TRACE`</dt><dd>is showing details of internal state.</dd>
+<dl>
+<dt>NONE</dt><dd>no log entries are generated on this level.</dd>
+<dt>FATAL</dt><dd>should be used for in cases of errors that require immediate program termination.</dd>
+<dt>ERROR</dt><dd>is best used in cases where the calling code should be given a chance to deal with the error or at least clean up before termination.</dd>
+<dt>WARN</dt><dd>stands for situations that don't have an immediate adverse effect, but might cause an error later.</dd>
+<dt>INFO</dt><dd>is for sparse log information that you want to appear in a standard log. This is also the default log level.</dd>
+<dt>CONFIG</dt><dd>should be used to log parameters and environment of the client.</dd>
+<dt>DEBUG</dt><dd>is targeted at developers when trying to analyze problems.</dd>
+<dt>TRACE</dt><dd>is showing details of internal state.</dd>
+</dl>
 
 You can change the log level with the function `set_level()`:
 
