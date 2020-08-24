@@ -9,6 +9,17 @@ in server processes.
 The module is designed to be easily usable, compact and fast. It was originally created to allow remote logging from Lua
 scripts running inside an [Exasol](https://www.exasol.com) database, but works in other context as well.
 
+## In a Nutshell
+
+The following snippet demonstrates basic remote logging. Check the [user guide](doc/user_guide/user_guide.md) for more details.
+
+```lua
+local log = require("exasollog")
+log.connect("thehost.example.org:3000")
+log.info("Hello world.")
+log.disconnect
+```
+
 ## Features
 
 * Logging to `STDOUT`
