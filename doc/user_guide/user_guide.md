@@ -33,7 +33,7 @@ In order to be able to use embedded packages on Exasol, you need to start your s
 table.insert(package.loaders,
     function (module_name)
         local loader = package.preload[module_name]
-        if(loader == nil) then
+        if not loader then
             error("F-ML-1: Module " .. module_name .. " not found in package.preload.")
         else
             return loader
