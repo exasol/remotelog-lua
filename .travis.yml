@@ -1,0 +1,14 @@
+language: c
+sudo: false
+
+os: linux
+
+before_script:
+    - apt install lua5.1
+    - apt install luarocks
+    - luarocks install luaunit
+    - luarocks install mockagne
+
+script:
+     - luarocks make --local
+     - lua run_unit_tests.lua
