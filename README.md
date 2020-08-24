@@ -17,7 +17,7 @@ The following snippet demonstrates basic remote logging. Check the [user guide](
 local log = require("exasollog")
 log.connect("thehost.example.org:3000")
 log.info("Hello world.")
-log.disconnect
+log.disconnect()
 ```
 
 ## Features
