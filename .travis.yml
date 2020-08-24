@@ -1,11 +1,14 @@
+dist: focal
+
 language: c
+
 sudo: required
 
 os: linux
 
 before_script:
-    - sudo apt install lua5.1
-    - sudo apt install luarocks
+    - sudo apt-get -y install lua5.1
+    - sudo apt-get -y install luarocks
     - sudo luarocks install luaunit
     - sudo luarocks install mockagne
 
