@@ -15,7 +15,7 @@ function test_log:setUp()
     when(self.tcp_mock:connect(any(), any())).thenAnswer(1)
     when(self.socket_mock.gettime()).thenAnswer(1000000)
     package.preload["socket"] = function () return self.socket_mock end
-    self.log = require("exasollog.log").init(date_pattern, false)
+    self.log = require("exasollog").init(date_pattern, false)
     self.log.set_client_name("Unit test")
     self.log.connect("localhost", 3000)
 end
@@ -23,7 +23,7 @@ end
 function test_log:tearDown()
     self.log.disconnect()
     package.loaded["socket"] = nil
-    package.loaded["exasollog.log"] = nil
+    package.loaded["exasollog"] = nil
 end
 
 function test_log:assert_message(message)
