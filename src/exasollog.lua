@@ -145,7 +145,7 @@ end
 -- @param ... parameters to be inserted into formatted message (optional)
 --
 local function write(level, message, ...)
-    if not M.socket_client or print then
+    if not (M.socket_client or print) then
         return
     else
         local entry
