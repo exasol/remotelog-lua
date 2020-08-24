@@ -145,7 +145,7 @@ end
 -- @param ... parameters to be inserted into formatted message (optional)
 --
 local function write(level, message, ...)
-    if not M.socket_client and print then
+    if not M.socket_client or print then
         return
     else
         local entry
@@ -168,7 +168,7 @@ local function write(level, message, ...)
             entry[#entry + 1] = "\n"
             M.socket_client:send(table.concat(entry))
         else
-            if(print) then
+            if print then
                 print(table.concat(entry))
             end
         end
