@@ -4,10 +4,10 @@ sudo: required
 os: linux
 
 before_script:
-    - apt install lua5.1
-    - apt install luarocks
-    - luarocks install luaunit
-    - luarocks install mockagne
+    - sudo apt install lua5.1
+    - sudo apt install luarocks
+    - sudo luarocks install luaunit
+    - sudo luarocks install mockagne
 
 script:
      - luarocks make --local
