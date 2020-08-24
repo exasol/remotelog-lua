@@ -25,7 +25,7 @@ luarocks install exasollog
 
 Up to and including Exasol Version 7, the embedded Lua has no access to the filesystem on the Exasol cluster. This rules out installation via LuaRocks on the cluster.
 
-Instead we recommend to directly bundle the module into your Lua scripts before you install them using [`amalg`]https://github.com/siffiejoe/lua-amalg/) (as [LuaRocks package](https://luarocks.org/modules/siffiejoe/amalg)). Check the [README](https://github.com/siffiejoe/lua-amalg/blob/master/README.md) for instructions on how to use `amalg`.
+Instead we recommend to directly bundle the module into your Lua scripts before you install them using [`amalg`](https://github.com/siffiejoe/lua-amalg/) (as [LuaRocks package](https://luarocks.org/modules/siffiejoe/amalg)). Check the [README](https://github.com/siffiejoe/lua-amalg/blob/master/README.md) for instructions on how to use `amalg`.
 
 In order to be able to use embedded packages on Exasol, you need to start your script with the following loader code:
 
