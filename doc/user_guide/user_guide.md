@@ -64,16 +64,16 @@ While this is optional, we recommend using `set_client_name()` before your first
 log.set_client_name("my-script 1.3.0")
 ```
 
-`exasollog` supports the following log levels:
+`exasollog` supports the following levels listed below. The default log level is `INFO`.
 
 <dl>
 <dt>NONE</dt><dd>no log entries are generated on this level.</dd>
 <dt>FATAL</dt><dd>should be used for in cases of errors that require immediate program termination.</dd>
 <dt>ERROR</dt><dd>is best used in cases where the calling code should be given a chance to deal with the error or at least clean up before termination.</dd>
 <dt>WARN</dt><dd>stands for situations that don't have an immediate adverse effect, but might cause an error later.</dd>
-<dt>INFO</dt><dd>is for sparse log information that you want to appear in a standard log. This is also the default log level.</dd>
+<dt>INFO</dt><dd>is for sparse log information that you want to appear in a standard log.</dd>
 <dt>CONFIG</dt><dd>should be used to log parameters and environment of the client.</dd>
-<dt>DEBUG</dt><dd>is targeted at developers when trying to analyze problems.</dd>
+<dt>DEBUG</dt><dd>is targeted at developers when trying to analyze program flow or problems.</dd>
 <dt>TRACE</dt><dd>is showing details of internal state.</dd>
 </dl>
 
@@ -88,7 +88,7 @@ log.set_level("DEBUG")
 Writing log messages is as easy as it gets:
 
 ```lua
-log.debug("Initialization complete.")
+log.info("Initialization complete.")
 ```
 
 If your provide more than one parameter, `exsollog` will interpret the first one as a format string (see [`string.format()`](https://www.lua.org/manual/5.1/manual.html#pdf-string.format) from the Lua standard library). All other parameters are then taken as values for the placeholders inside that string.
@@ -129,4 +129,23 @@ Don't forget to close the connection before you terminate your program:
 
 ```lua
 log.disconnect()
+```
+
+### Dealing With Application Errors When the Remote Connection is Open
+
+If the code in between `connect()` and `disconnect()` can cause errors, we recommend wrapping it in a `pcall()` to properly clean up the remote connection.
+
+```lua
+log.connect(host, port)
+local ok, result = pcall(
+    -- Code that can fail goes here.
+)
+if(ok) then
+    log.disconnect()
+    return result
+else
+    log_error(result)
+    log.disconnect()
+    error(result)
+end
 ```

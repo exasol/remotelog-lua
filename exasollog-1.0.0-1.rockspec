@@ -14,7 +14,7 @@ description = {
     `exasollog` depends on [CSJON](https://github.com/openresty/lua-cjson) (MIT license). Note that on an Exasol
     cluster CJSON is pre-installed.
 
-    You can find the [user guide](https://github.com/exasol/log-lua/blob/master/doc/user-guide/user-guide.md) in the
+    You can find the [user guide](https://github.com/exasol/log-lua/blob/master/doc/user_guide/user_guide.md) in the
     projects GitHub repository.]],
     homepage = "https://github.com/exasol/log-lua",
     license = "MIT",
