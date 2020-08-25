@@ -112,13 +112,13 @@ Lets assume the remote machines IP address is `10.0.0.1` and the host name is `e
 Now before the first log message connect the logger to that listener.
 
 ```lua
-log.connect("10.0.0.1:3000")
+log.connect("10.0.0.1", 3000)
 ```
 
 or
 
 ```lua
-log.connect("earth.example.org:3000")
+log.connect("earth.example.org", 3000)
 ```
 
 That's it. If the connection cannot be established, the logger falls back to console logging.
