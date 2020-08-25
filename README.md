@@ -1,8 +1,8 @@
-# `exasollog` - Remote logging for Lua
+# `remotelog` - Remote logging for Lua
 
 ## Overview
 
-The `exasollog` is a Lua module that provides logging capabilities. While it supports regular logging to `STDOUT` too, 
+The `remotelog` is a Lua module that provides logging capabilities. While it supports regular logging to `STDOUT` too, 
 it is mainly targeted at systems where a log receiver must be on a different machine, especially when debugging problems
 in server processes.
 
@@ -14,7 +14,7 @@ scripts running inside an [Exasol](https://www.exasol.com) database, but works i
 The following snippet demonstrates basic remote logging. Check the [user guide](doc/user_guide/user_guide.md) for more details.
 
 ```lua
-local log = require("exasollog")
+local log = require("remotelog")
 log.connect("thehost.example.org:3000")
 log.info("Hello world.")
 log.disconnect()
@@ -38,7 +38,7 @@ log.disconnect()
 
 ### Run Time Dependencies
 
-`exasollog` requires Lua 5.1 or later.
+`remotelog` requires Lua 5.1 or later.
 
 | Dependency                               | Purpose                                                | License                       |
 |------------------------------------------|--------------------------------------------------------|-------------------------------|

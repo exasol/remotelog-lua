@@ -1,8 +1,8 @@
-# exasollog 1.0.0, released 2020-08-24
+# remotelog 1.0.0, released 2020-08-24
 
 ## Summary
 
-In this first release of exasollog, we added all features to have a functional equivalent in Lua to the existing
+In this first release of remotelog, we added all features to have a functional equivalent in Lua to the existing
 remote logging for Exasol in Java: logging via TCP socket and fallback to `STDOUT`, log level control, proper
 timestamps and so on.
 

@@ -94,11 +94,11 @@ function M.connect(host, port)
     local log_client_prefix = M.log_client_name and (M.log_client_name .. ": ") or ""
     if ok then
         M.socket_client = tcp_socket
-        M.info("%sConnected to log receiver listening on %s:%d with log level %s. Timezone is UTC%s.", log_client_prefix, host, port,
+        M.info("%sConnected to log receiver listening on %s:%d with log level %s. Time zone is UTC%s.", log_client_prefix, host, port,
             get_level_name(M.level), os.date("%z"))
     else
         print(log_client_prefix .. "W-LOG-2: Unable to open socket connection to " .. host .. ":" .. port
-            .. "for sending log messages. Falling back to console logging with log level " .. get_level_name(M.level)
+            .. " for sending log messages. Falling back to console logging with log level " .. get_level_name(M.level)
             .. ". Timezone is UTC" .. os.date("%z") .. ". Caused by: " .. err)
     end
 end
@@ -119,9 +119,9 @@ end
 --
 function M.set_level(level_name)
     local level = levels[level_name]
-    if level == nil then
-        M.warning('W-LOG-1: Attempt to set illegal log level "' .. level_name
-            .. ' Pick one of: NONE, FATAL, ERROR, WARN, INFO, CONFIG, DEBUG, TRACE. Falling back to level INFO.')
+    if not level then
+        M.warn('W-LOG-1: Attempt to set illegal log level "%s". Pick one of: NONE, FATAL, ERROR, WARN, INFO, CONFIG,'
+        .. ' DEBUG, TRACE. Falling back to level INFO.', level_name)
         M.level = levels.INFO
     else
         M.level = level

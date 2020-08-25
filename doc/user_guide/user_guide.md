@@ -1,27 +1,27 @@
-# User Guide `exasollog`
+# User Guide `remotelog`
 
-The `exasollog` is a Lua module that provides logging capabilities. While it supports regular logging to `STDOUT` too, 
+The `remotelog` is a Lua module that provides logging capabilities. While it supports regular logging to `STDOUT` too, 
 it is mainly targeted at systems where a log receiver must be on a different machine, especially when debugging problems
 in server processes.
 
 The module is designed to be easily usable, compact and fast. It was originally created to allow remote logging from Lua
 scripts running inside an [Exasol](https://www.exasol.com) database, but works in other context as well.
 
-## Installing `exasollog` on a Regular Machine
+## Installing `remotelog` on a Regular Machine
 
 On a developer machine or any host that has a standard Lua setup, installing the module is straight forward. You install it like any other Lua module.
 
-`exasollog` is available on [GitHub](https://www.github.com/exasol/log-lua) or as a [LuaRocks](https://luarocks.org/) package.
+`remotelog` is available on [GitHub](https://www.github.com/exasol/log-lua) or as a [LuaRocks](https://luarocks.org/) package.
 
 The module is 100% native Lua code in a single file, so the source code is at the same time the actual module.
 
 To install the package via LuaRocks, issue the following command:
 
 ```bash
-luarocks install exasollog
+luarocks install remotelog
 ```
 
-## Embedding `exasollog` into Exasol Lua Scripts
+## Embedding `remotelog` into Exasol Lua Scripts
 
 Up to and including Exasol Version 7, the embedded Lua has no access to the filesystem on the Exasol cluster. This rules out installation via LuaRocks on the cluster.
 
@@ -42,17 +42,17 @@ table.insert(package.loaders,
 )
 ```
 
-## Using `exasollog`
+## Using `remotelog`
 
 ### Loading the Module
 
 The first thing you need is obviously a `require` instruction. In the simplest possible case, that is:
 
 ```lua
-local log = require("exasollog")
+local log = require("remotelog")
 ```
 
-### Configuring `exasollog`
+### Configuring `remotelog`
 
 There are two ways to configure the module. One is regular configuration through setters.
 
@@ -64,7 +64,7 @@ While this is optional, we recommend using `set_client_name()` before your first
 log.set_client_name("my-script 1.3.0")
 ```
 
-`exasollog` supports the following levels listed below. The default log level is `INFO`.
+`remotelog` supports the following levels listed below. The default log level is `INFO`.
 
 <dl>
 <dt>NONE</dt><dd>no log entries are generated on this level.</dd>
@@ -99,7 +99,7 @@ log.debug("Finished task '%s' after %07.3dms", task_name, elapsed_time)
 
 ### Connecting to a Remote log Receiver
 
-The most important part of `exasollog` is that it supports remote logging. Using that feature is trivial.
+The most important part of `remotelog` is that it supports remote logging. Using that feature is trivial.
 
 To try it out, first start a socket listener on a remote machine, for example using `netcat` on port 3000:
 
@@ -123,7 +123,7 @@ log.connect("earth.example.org:3000")
 
 That's it. If the connection cannot be established, the logger falls back to console logging.
 
-Additionally console logging checks whether the global `print()` function really exists. In case it doesn't, the log entries are discarded. This ensures that a program using `exasollog` and falling back to console logging still works even if the Lua environment does not support writing to `STDOUT` (like on an Exasol database).
+Additionally console logging checks whether the global `print()` function really exists. In case it doesn't, the log entries are discarded. This ensures that a program using `remotelog` and falling back to console logging still works even if the Lua environment does not support writing to `STDOUT` (like on an Exasol database).
 
 Don't forget to close the connection before you terminate your program:
 

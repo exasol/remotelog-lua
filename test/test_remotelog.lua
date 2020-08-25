@@ -15,7 +15,7 @@ function test_log:setUp()
     when(self.tcp_mock:connect(any(), any())).thenAnswer(1)
     when(self.socket_mock.gettime()).thenAnswer(1000000)
     package.preload["socket"] = function () return self.socket_mock end
-    self.log = require("exasollog").init(date_pattern, false)
+    self.log = require("remotelog").init(date_pattern, false)
     self.log.set_client_name("Unit test")
     self.log.connect("localhost", 3000)
 end
@@ -23,7 +23,7 @@ end
 function test_log:tearDown()
     self.log.disconnect()
     package.loaded["socket"] = nil
-    package.loaded["exasollog"] = nil
+    package.loaded["remotelog"] = nil
 end
 
 function test_log:assert_message(message)
@@ -37,7 +37,7 @@ end
 function test_log:test_startup_message()
     local timezone = os.date("%z")
     self:assert_message(self.today .. " [INFO]   Unit test: Connected to log receiver listening on localhost:3000"
-        .. " with log level INFO. Timezone is UTC" .. timezone .. ".\n")
+        .. " with log level INFO. Time zone is UTC" .. timezone .. ".\n")
 end
 
 function test_log:test_fatal()
@@ -89,6 +89,12 @@ end
 function test_log:test_logging_with_format_string()
     self.log.info('%s says "Mount Everest is %d meters high."', "Simon", 8848)
     self:assert_message(self.today .. ' [INFO]   Simon says "Mount Everest is 8848 meters high."\n')
+end
+
+function test_log:test_set_level_to_illegal_value_throws_error()
+    self.log.set_level("FOOBAR")
+    self:assert_message(self.today .. ' [WARN]   W-LOG-1: Attempt to set illegal log level "FOOBAR". ' ..
+        'Pick one of: NONE, FATAL, ERROR, WARN, INFO, CONFIG, DEBUG, TRACE. Falling back to level INFO.\n')
 end
 
 os.exit(luaunit.LuaUnit.run())
