@@ -17,7 +17,7 @@ timestamps and so on.
 
 ## Dependency Updates
 
-* Added  `Mockagne:1.0-1` (or newer)
+* Added `Mockagne:1.0-1` (or newer)
 * Added `lua:5.1` to `lua:5.4`
 * Added `LuaSocket:2.0.2-6` (or newer)
 * Added `luauint:3.3-1` (or newer)

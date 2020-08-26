@@ -1,24 +1,27 @@
 package = "remotelog"
-version = "1.0.0-1"
+version = "1.0.1-1"
 
 source = {
     url = 'https://github.com/exasol/remotelog-lua',
-    tag = "1.0.0"
+    tag = "1.0.1"
 }
 
 description = {
     summary = "(Remote) logging for Exasol and other Lua contexts",
-    detailed = [[`remotelog` provides a logger for Lua that can log message to a remote log receiver listening on a TCP
+    detailed = [["remotelog" provides a logger for Lua that can log message to a remote log receiver listening on a TCP
     port of a host reachable from the machine producing the log entries.
     
     It can also be used for simple console logging. If the connection cannot be established, the log automatically
     falls back to STDOUT (in some cases this will at least let the messages appear in a local log file).
      
-    `remotelog` depends on [LuaSocket](http://w3.impa.br/~diego/software/luasocket/) (MIT license). Note that on an
-    Exasol cluster LuaSocket is pre-installed.
+    "remotelog" depends on LuaSocket (MIT license). Note that on an Exasol cluster LuaSocket is pre-installed.
 
-    You can find the [user guide](https://github.com/exasol/remotelog-lua/blob/master/doc/user_guide/user_guide.md) in the
-    projects GitHub repository.]],
+    You can find the  user guide in the projects GitHub repository.
+    
+    Links:
+    
+    - LuaSocket: http://w3.impa.br/~diego/software/luasocket/
+    - User guide: https://github.com/exasol/remotelog-lua/blob/master/doc/user_guide/user_guide.md]],
     homepage = "https://github.com/exasol/remotelog-lua",
     license = "MIT",
     maintainer = 'Exasol <opensource@exasol.com>'
