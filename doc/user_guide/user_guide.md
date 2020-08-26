@@ -11,7 +11,7 @@ scripts running inside an [Exasol](https://www.exasol.com) database, but works i
 
 On a developer machine or any host that has a standard Lua setup, installing the module is straight forward. You install it like any other Lua module.
 
-`remotelog` is available on [GitHub](https://www.github.com/exasol/log-lua) or as a [LuaRocks](https://luarocks.org/) package.
+`remotelog` is available on [GitHub](https://www.github.com/exasol/remotelog-lua) or as a [LuaRocks](https://luarocks.org/) package.
 
 The module is 100% native Lua code in a single file, so the source code is at the same time the actual module.
 
