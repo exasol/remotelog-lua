@@ -21,7 +21,7 @@ description = {
     maintainer = 'Exasol <opensource@exasol.com>'
 }
 
-dependencies = {"lua >= 5.1", "lua < 5.4", "luasocket > 2.0.2-6"}
+dependencies = {"lua >= 5.1, < 5.4", "luasocket > 2.0.2-6"}
 
 -- With support for LuaRocks 3 we will enable the following configuration option. Right now LuaRocks 2 is still the
 -- current version on Ubuntu, so it is too early for this.
