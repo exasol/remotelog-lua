@@ -1,0 +1,8 @@
+*.bak
+*~
+*.log
+*.lock
+*.old
+*.md.html
+.dbeaver
+Scripts
