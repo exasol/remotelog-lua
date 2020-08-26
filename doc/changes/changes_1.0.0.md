@@ -1,4 +1,4 @@
-# remotelog 1.0.0, released 2020-08-24
+# remotelog 1.0.0, released 2020-08-26
 
 ## Summary
 
