@@ -21,27 +21,6 @@ To install the package via LuaRocks, issue the following command:
 luarocks install remotelog
 ```
 
-## Embedding `remotelog` into Exasol Lua Scripts
-
-Up to and including Exasol Version 7, the embedded Lua has no access to the filesystem on the Exasol cluster. This rules out installation via LuaRocks on the cluster.
-
-Instead we recommend to directly bundle the module into your Lua scripts before you install them using [`amalg`](https://github.com/siffiejoe/lua-amalg/) (as [LuaRocks package](https://luarocks.org/modules/siffiejoe/amalg)). Check the [README](https://github.com/siffiejoe/lua-amalg/blob/master/README.md) for instructions on how to use `amalg`.
-
-In order to be able to use embedded packages on Exasol, you need to start your script with the following loader code:
-
-```lua
-table.insert(package.loaders,
-    function (module_name)
-        local loader = package.preload[module_name]
-        if not loader then
-            error("F-ML-1: Module " .. module_name .. " not found in package.preload.")
-        else
-            return loader
-        end
-    end
-)
-```
-
 ## Using `remotelog`
 
 ### Loading the Module
@@ -148,4 +127,31 @@ else
     log.disconnect()
     error(result)
 end
+```
+
+## Exasol-specifics
+
+The `remotelog` Lua module was initially created to support logging from within Lua scripts that run on the [Exasol](https://www.exasol.com) database.
+
+While the module is so generic that it can be used in any regular Lua script, it also is equipped to handle Exasol-specifics, like the fact that the global `print` function does not exist in this environment.
+
+## Embedding `remotelog` into Exasol Lua Scripts
+
+Up to and including Exasol Version 7, the embedded Lua has no access to the filesystem on the Exasol cluster. This rules out installation via LuaRocks on the cluster.
+
+Instead we recommend to directly bundle the module into your Lua scripts before you install them using [`amalg`](https://github.com/siffiejoe/lua-amalg/) (as [LuaRocks package](https://luarocks.org/modules/siffiejoe/amalg)). Check the [README](https://github.com/siffiejoe/lua-amalg/blob/master/README.md) for instructions on how to use `amalg`.
+
+In order to be able to use embedded packages on Exasol, you need to start your script with the following loader code:
+
+```lua
+table.insert(package.loaders,
+    function (module_name)
+        local loader = package.preload[module_name]
+        if not loader then
+            error("F-ML-1: Module " .. module_name .. " not found in package.preload.")
+        else
+            return loader
+        end
+    end
+)
 ```

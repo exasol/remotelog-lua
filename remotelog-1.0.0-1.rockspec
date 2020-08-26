@@ -11,8 +11,8 @@ description = {
     It can also be used for simple console logging. If the connection cannot be established, the log automatically
     falls back to STDOUT (in some cases this will at least let the messages appear in a local log file).
      
-    `remotelog` depends on [CSJON](https://github.com/openresty/lua-cjson) (MIT license). Note that on an Exasol
-    cluster CJSON is pre-installed.
+    `remotelog` depends on [LuaSocket](http://w3.impa.br/~diego/software/luasocket/) (MIT license). Note that on an
+    Exasol cluster LuaSocket is pre-installed.
 
     You can find the [user guide](https://github.com/exasol/log-lua/blob/master/doc/user_guide/user_guide.md) in the
     projects GitHub repository.]],

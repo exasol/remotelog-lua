@@ -15,7 +15,7 @@ The following snippet demonstrates basic remote logging. Check the [user guide](
 
 ```lua
 local log = require("remotelog")
-log.connect("thehost.example.org:3000")
+log.connect("thehost.example.org", 3000)
 log.info("Hello world.")
 log.disconnect()
 ```
