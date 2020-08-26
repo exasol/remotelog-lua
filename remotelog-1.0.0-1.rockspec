@@ -2,7 +2,7 @@ package = "remotelog"
 version = "1.0.0-1"
 
 source = {
-    url = 'https://github.com/exasol/log-lua',
+    url = 'https://github.com/exasol/remotelog-lua',
     tag = "1.0.0"
 }
 
@@ -17,9 +17,9 @@ description = {
     `remotelog` depends on [LuaSocket](http://w3.impa.br/~diego/software/luasocket/) (MIT license). Note that on an
     Exasol cluster LuaSocket is pre-installed.
 
-    You can find the [user guide](https://github.com/exasol/log-lua/blob/master/doc/user_guide/user_guide.md) in the
+    You can find the [user guide](https://github.com/exasol/remotelog-lua/blob/master/doc/user_guide/user_guide.md) in the
     projects GitHub repository.]],
-    homepage = "https://github.com/exasol/log-lua",
+    homepage = "https://github.com/exasol/remotelog-lua",
     license = "MIT",
     maintainer = 'Exasol <opensource@exasol.com>'
 }
