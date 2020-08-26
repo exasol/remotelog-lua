@@ -17,19 +17,22 @@ local function print_spy(...)
     original_print(...)
 end
 
-_G.print = print_spy
 
 function test_log:setUp()
+    _G.print = print_spy
     self.today = os.date(date_pattern)
     self.socket_mock = mockagne.getMock()
     self.tcp_mock = mockagne.getMock()
     when(self.socket_mock.gettime()).thenAnswer(1000000)
+    when(self.socket_mock.tcp()).thenAnswer(self.tcp_mock)
+    when(self.tcp_mock:connect(any(), any())).thenAnswer(false, "Connection refused")
     package.preload["socket"] = function () return self.socket_mock end
     self.log = require("remotelog").init(date_pattern, false)
     self.log.set_client_name("Unit test console")
 end
 
 function test_log:tearDown()
+    _G.print = original_print
     package.loaded["socket"] = nil
     package.loaded["remotelog"] = nil
 end
@@ -99,6 +102,18 @@ function test_log:test_set_level_to_illegal_value_throws_error()
     self.log.set_level("FOOBAR")
     self:assert_message(self.today .. ' [WARN]   W-LOG-1: Attempt to set illegal log level "FOOBAR". ' ..
         'Pick one of: NONE, FATAL, ERROR, WARN, INFO, CONFIG, DEBUG, TRACE. Falling back to level INFO.')
+end
+
+function test_log:test_unsetting_print_does_not_cause_error()
+    _G.print = nil
+    self.log.error("This should be silently discarded without error.")
+    _G.print = original_print
+end
+
+function test_log:test_unsetting_print_does_not_break_fallback()
+    _G.print = nil
+    self.log.connect("nonexistent.host", 12345)
+    _G.print = original_print
 end
 
 os.exit(luaunit.LuaUnit.run())

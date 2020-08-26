@@ -68,9 +68,9 @@ local function start_high_resolution_timer()
 end
 
 local function get_level_name(level)
-    for k, v in pairs(levels) do
-        if v == level then
-            return k
+    for key, value in pairs(levels) do
+        if value == level then
+            return key
         end
     end
     error("E-LOG-1: Unable to determine log level name for level number " .. level .. ".")
@@ -97,9 +97,11 @@ function M.connect(host, port)
         M.info("%sConnected to log receiver listening on %s:%d with log level %s. Time zone is UTC%s.", log_client_prefix, host, port,
             get_level_name(M.level), os.date("%z"))
     else
-        print(log_client_prefix .. "W-LOG-2: Unable to open socket connection to " .. host .. ":" .. port
-            .. " for sending log messages. Falling back to console logging with log level " .. get_level_name(M.level)
-            .. ". Timezone is UTC" .. os.date("%z") .. ". Caused by: " .. err)
+        if print then
+            print(log_client_prefix .. "W-LOG-2: Unable to open socket connection to " .. host .. ":" .. port
+                .. " for sending log messages. Falling back to console logging with log level "
+                .. get_level_name(M.level) .. ". Timezone is UTC" .. os.date("%z") .. ". Caused by: " .. err)
+        end
     end
 end
 
@@ -175,42 +177,118 @@ local function write(level, message, ...)
     end
 end
 
+---
+-- Write a log message on level <code>FATAL</code>.
+-- <p>
+-- You should use this in cases where you directly need to terminate the running program afterwards. I.e. in case of
+-- non-recoverable errors (e.g. data corruption).
+-- </p>
+-- 
+-- @see info for details about the function paramters
+--  
+-- @param ... log message or message pattern with placeholders and values
+-- 
 function M.fatal(...)
     if M.level >= levels.FATAL then
         write("FATAL", ...)
     end
 end
 
+---
+-- Write a log message on level <code>ERROR<code>.
+-- <p>
+-- Log potentially recoverable errors on this level.
+-- </p> 
+-- 
+-- @see info for details about the function paramters
+--  
+-- @param ... log message or message pattern with placeholders and values
+-- 
 function M.error(...)
     if M.level >= levels.ERROR then
         write("ERROR", ...)
     end
 end
 
+---
+-- Write a log message on level <code>WARN<code>.
+-- <p>
+-- Log problems that either are recovered from automatically or do not have immediate adverse effects on this level.
+-- </p> 
+-- 
+-- @see info for details about the function paramters
+--  
+-- @param ... log message or message pattern with placeholders and values
+-- 
 function M.warn(...)
     if M.level >= levels.WARN then
         write("WARN", ...)
     end
 end
 
+---
+-- Write a log message on level <code>info</code>.
+-- <p>
+-- We recommend using this scarcely and for non-repeating messages only, since this is the default log level. Otherwise
+-- a regular log will be cluttered.
+-- </p> 
+-- <p> The parameters can either be a single parameter which will be written to the log as-is. In case multiple
+-- parameters are used, the first is treated as message pattern with placeholders as used in the standard library's
+-- <code>string.format(...)</code> function.
+-- <p>
+--  
+-- @param ... log message or message pattern with placeholders and values
+-- 
 function M.info(...)
     if M.level >= levels.INFO then
         write("INFO", ...)
     end
 end
 
+---
+-- Write a log message on level <code>CONFIG</code>.
+-- <p>
+-- Messages on this level should be used to log program configuration or environment information.
+-- </p> 
+-- 
+-- @see info for details about the function paramters
+--  
+-- @param ... log message or message pattern with placeholders and values
+-- 
 function M.config(...)
     if M.level >= levels.CONFIG then
         write("CONFIG", ...)
     end
 end
 
+---
+-- Write a log message on level <code>DEBUG</code>.
+-- <p>
+-- Log information that helps analyzing program flow and error causes on this level.
+-- </p> 
+-- 
+-- @see info for details about the function paramters
+--  
+-- @param ... log message or message pattern with placeholders and values
+-- 
 function M.debug(...)
     if M.level >= levels.DEBUG then
         write("DEBUG", ...)
     end
 end
 
+---
+-- Write a log message on level <code>TRACE</code>.
+-- <p>
+-- Use this log level for the most details logging information, like internal program state, method entry and exit.
+-- parameter values and all other details that are only of interest for someone with intimate knowledge of the internal
+-- workings of the program.
+-- </p> 
+-- 
+-- @see info for details about the function paramters
+--  
+-- @param ... log message or message pattern with placeholders and values
+-- 
 function M.trace(...)
     if M.level >= levels.FATAL then
         write("TRACE", ...)
