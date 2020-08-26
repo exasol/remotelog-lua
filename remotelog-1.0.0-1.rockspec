@@ -1,7 +1,10 @@
 package = "remotelog"
 version = "1.0.0-1"
 
-source = {url = 'https://github.com/exasol/log-lua/releases/download/1.0.0/rock-remotelog-1.0.0.zip'}
+source = {
+    url = 'https://github.com/exasol/log-lua',
+    tag = "1.0.0"
+}
 
 description = {
     summary = "(Remote) logging for Exasol and other Lua contexts",
