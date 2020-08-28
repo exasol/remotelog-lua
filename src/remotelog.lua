@@ -32,7 +32,7 @@ local socket = require("socket")
 -- first time.
 -- </p>
 -- <p>
--- You can use a high resolution timer. Note that this are <p>not</p> the sub-second units of the timestamp! Lua
+-- You can use a high resolution timer. Note that this are <b>not</b> the sub-second units of the timestamp! Lua
 -- timestamps only offer second resolution. Rather you get a time difference in milliseconds counted from the first time
 -- the log is opened.
 --

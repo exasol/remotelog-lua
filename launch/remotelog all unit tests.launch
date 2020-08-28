@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.ldt.debug.core.lualocaldebug">
+    <stringAttribute key="mainScript" value="run_unit_tests.lua"/>
+    <stringAttribute key="nature" value="org.eclipse.ldt.nature"/>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/remotelog/run_unit_tests.lua"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+        <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+        <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+    </listAttribute>
+    <stringAttribute key="org.eclipse.dltk.launching.INTERPRETER_CONTAINER" value="org.eclipse.dltk.launching.INTERPRETER_CONTAINER/org.eclipse.ldt.support.lua51.JNLua51InterpreterInstallType/Lua 5.1 on JNLua"/>
+    <booleanAttribute key="org.eclipse.dltk.launching.debugConsole" value="false"/>
+    <stringAttribute key="process_factory_id" value="org.eclipse.dltk.launching.scriptProcessFactory"/>
+    <stringAttribute key="project" value="remotelog"/>
+    <stringAttribute key="scriptArguments" value="-o junit -n ${project_loc}/target/unit_test_report.xml"/>
+</launchConfiguration>
