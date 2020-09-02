@@ -100,4 +100,16 @@ function test_log:test_set_level_to_illegal_value_throws_error()
         'Pick one of: NONE, FATAL, ERROR, WARN, INFO, CONFIG, DEBUG, TRACE. Falling back to level INFO.\n')
 end
 
+function test_log:test_init_changes_timestamp_pattern()
+    package.loaded["remotelog"] = nil
+    local log = require("remotelog").init("%Y-%m-%d", false)
+    luaunit.assertEquals(log.timestamp_pattern, "%Y-%m-%d")
+end
+
+function test_log:test_init_does_not_touch_timestamp_pattern_when_nil()
+    package.loaded["remotelog"] = nil
+    local log = require("remotelog").init(nil, false)
+    luaunit.assertEquals(log.timestamp_pattern, "%Y-%m-%d %H:%M:%S")
+end
+
 os.exit(luaunit.LuaUnit.run())
