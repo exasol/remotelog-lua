@@ -46,7 +46,7 @@ function M.init(timestamp_pattern, use_high_resolution_time)
     if timestamp_pattern then
         M.timestamp_pattern = timestamp_pattern
     end
-    M.use_high_resolution_time = use_high_resolution_time
+    M.use_high_resolution_time = use_high_resolution_time or false
     return M
 end
 
