@@ -17,7 +17,7 @@ local M = {
     socket_client = nil,
     connection_timeout = 0.1, -- seconds
     log_client_name = nil,
-    timestamp_pattern = "%Y-%m-%d %H:%M:%S",
+    timestamp_pattern = "%Y-%m-%d %H:%M:%S", -- example: 2020-09-02 13:56:01
     start_nanos = 0,
     use_high_resolution_time = true,
 }
@@ -43,10 +43,10 @@ local socket = require("socket")
 -- @return module loader
 --
 function M.init(timestamp_pattern, use_high_resolution_time)
-    M.timestamp_pattern = timestamp_pattern
-    if use_high_resolution_time ~= nil then
-        M.use_high_resolution_time = use_high_resolution_time
+    if timestamp_pattern then
+        M.timestamp_pattern = timestamp_pattern
     end
+    M.use_high_resolution_time = use_high_resolution_time
     return M
 end
 
@@ -81,6 +81,9 @@ end
 -- <p>
 -- This method allows connecting the log to an external process listening on a TCP port. The process can be on a remote
 -- host. If the connection cannot be established, the logger falls back to console logging.
+-- </p>
+-- <p>
+-- If you don't use the <code>connect()</code> function, you get regular console logging.
 -- </p>
 --
 -- @param host remote host on which the logging process runs
