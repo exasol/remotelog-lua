@@ -2,7 +2,7 @@ package = "remotelog"
 version = "1.0.1-1"
 
 source = {
-    url = 'https://github.com/exasol/remotelog-lua',
+    url = 'git://github.com/exasol/remotelog-lua',
     tag = "1.0.1"
 }
 

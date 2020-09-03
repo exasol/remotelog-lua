@@ -19,5 +19,5 @@ before_script:
     - sudo luarocks install mockagne
 
 script:
-     - sudo luarocks make
-     - lua run_unit_tests.lua
+    - sudo luarocks make
+    - lua run_unit_tests.lua
