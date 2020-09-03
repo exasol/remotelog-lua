@@ -13,6 +13,7 @@ local levels = {NONE = 1, FATAL = 2, ERROR = 3, WARN = 4, INFO = 5, CONFIG = 6, 
 -- </p>
 --
 local M = {
+    VERSION = 1.0.1,
     level = levels.INFO,
     socket_client = nil,
     connection_timeout = 0.1, -- seconds

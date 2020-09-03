@@ -1,8 +1,8 @@
-# remotelog 1.0.1, released 2020-08-?
+# remotelog 1.0.1, released 2020-09-03
 
 ## Summary
 
-Fixes in the LuaRocks spec file
+Fixes in the LuaRocks spec file. Corrected repository link, so that it starts with `git:`.
 
 ### Documentation
 
