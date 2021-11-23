@@ -1,0 +1,31 @@
+name: CI Build
+
+on: [push]
+jobs:
+  build:
+    strategy:
+       fail-fast: false
+       matrix:
+          lua_version: [5.1, 5.2, 5.3]
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Install dependencies"
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install lua${{ matrix.lua_version }}
+          sudo apt-get -y install liblua${{ matrix.lua_version }}
+          sudo apt-get -y install luarocks
+          sudo luarocks install luaunit
+          sudo luarocks install mockagne
+      - uses: actions/checkout@v2
+        with:
+           fetch-depth: 0
+      - name: "Run Tests"
+        run: |
+          sudo luarocks make
+          lua run_unit_tests.lua
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: luacov.report.out
+          path: target/luacov-reports/luacov.report.out
