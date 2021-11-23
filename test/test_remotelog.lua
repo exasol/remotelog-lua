@@ -1,6 +1,3 @@
--- FIXME: Lua 5.3 workaround for mockagne. Remove with fixed version
-unpack = unpack or table.unpack 
-
 local luaunit = require("luaunit")
 local mockagne = require("mockagne")
 
