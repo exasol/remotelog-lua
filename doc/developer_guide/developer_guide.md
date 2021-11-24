@@ -6,7 +6,16 @@ This document contains developer information on how to build, run, modify and pu
 
 This project needs a Lua interpreter &ge; Lua 5.1.
 
-To install the dependencies you also need the [LuaRocks](https://luarocks.org/) package manager.
+## Lua Rocks 3
+
+To install the dependencies you also need the [LuaRocks](https://luarocks.org/) package manager. While LuaRocks version 3 is already available for quite a while, it has not yet reached all package repostories.
+
+### Installing on Ubuntu 21.10
+
+```bash
+wget http://http.us.debian.org/debian/pool/main/l/luarocks/luarocks_3.8.0+dfsg1-1_all.deb
+sudo dpkg -i luarocks_3.8.0+dfsg1-1_all.deb
+```
 
 ## Sources and tests
 
@@ -91,7 +100,7 @@ luarocks remove <package-name> --local
 
 ## Continuous Integration
 
-In the directory `.github/workflows` you find the GitHub actions that make up the continuous integration and test for this project. Note that if you add a new dependency for runtime, test or build, you need to update the list of packages in `.github/workflows/ci-build.yml`.
+In the directory `.github/workflows` you find the GitHub actions that make up the continuous integration and test for this project.
 
 The build runs with each change on a pull request. As mentioned before, the test suite and static code analysis are part of the CI build. So the build only succeeds if the whole test suite and static checks are green.
 
