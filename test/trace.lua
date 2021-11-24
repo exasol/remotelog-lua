@@ -3,6 +3,8 @@
 --
 local M = {}
 
+unpack = unpack or table.unpack -- Lua 5.3 compatibility
+
 ---
 -- Trace a global function's parameters when used in the context of another function call
 --
