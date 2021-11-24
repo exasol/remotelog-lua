@@ -90,7 +90,7 @@ luarocks make --local
 
 If you have administrator privileges on your machine and prefer a global installation, simply omit the `--local` switch in all commands.
 
-**Warning:** Be careful, when you have packages install that you also work on, you have to make sure that the work-in-progress code is in the front of the package path. Otherwise you end up debugging an installed package instead of your code!
+**Warning:** Be careful, when you have packages installed that you also work on, you have to make sure that the work-in-progress code is in the front of the package path. Otherwise you end up debugging an installed package instead of your code!
 
 To uninstall the package use:
 
