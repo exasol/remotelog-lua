@@ -147,12 +147,6 @@ log.init(date_pattern, false, log.fallback_strategies.ERROR)
 
 If you omit the third parameter, the default strategy is to fall back to console logging.
 
-Another way is via `set_fallback_strategy`:
-
-```lua
-log.set_fallback_strategies(log.fallback_strategies.ERROR)
-```
-
 ## Exasol-specifics
 
 The `remotelog` Lua module was initially created to support logging from within Lua scripts that run on the [Exasol](https://www.exasol.com) database.
