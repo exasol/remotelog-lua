@@ -1,5 +1,7 @@
 # remotelog-lua 1.1.0, released 2021-11-24
 
+Code name: Fallback switch
+
 ## Summary
 
 Version 1.1.0 of `remotelog-lua` lets you pick between three different fallback strategies in case the remote logging connection can't be established:
