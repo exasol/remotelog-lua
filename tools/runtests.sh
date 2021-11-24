@@ -1,4 +1,7 @@
 #!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
 
 # This script finds and runs Lua unit tests, collects coverage and runs static code analysis.
 
@@ -24,7 +27,7 @@ function create_target_directories {
 }
 
 ##
-# Run the unit tests and collect code coverage.
+# Run the unit tests.
 #
 # Return error status in case there were failures.
 #

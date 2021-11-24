@@ -147,7 +147,7 @@ log.init(date_pattern, false, log.fallback_strategies.ERROR)
 
 If you omit the third parameter, the default strategy is to fall back to console logging.
 
-Another way is or via `set_fallback_strategy`:
+Another way is via `set_fallback_strategy`:
 
 ```lua
 log.set_fallback_strategies(log.fallback_strategies.ERROR)
