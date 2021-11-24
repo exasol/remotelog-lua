@@ -1,4 +1,4 @@
-# remotelog-lua 1.1.0, released 2021-11-23
+# remotelog-lua 1.1.0, released 2021-11-24
 
 ## Summary
 
