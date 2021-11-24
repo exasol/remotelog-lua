@@ -17,6 +17,7 @@ jobs:
           sudo apt-get -y install luarocks
           sudo luarocks install luaunit
           sudo luarocks install mockagne
+          sudo luarocks install luasocket
       - uses: actions/checkout@v2
         with:
            fetch-depth: 0
