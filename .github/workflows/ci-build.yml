@@ -12,18 +12,18 @@ jobs:
       - name: "Install dependencies"
         run: |
           sudo apt-get update
-          sudo apt-get -y install lua${{ matrix.lua_version }}
-          sudo apt-get -y install liblua${{ matrix.lua_version }}
-          sudo apt-get -y install luarocks
-          sudo luarocks install luaunit
-          sudo luarocks install mockagne
+          sudo apt-get -y install lua${{ matrix.lua_version }} liblua${{ matrix.lua_version }} luarocks
+          for module in luacheck luacov luacov-coveralls luaunit mockagne luasocket
+          do
+             sudo luarocks install "$module"
+          done
       - uses: actions/checkout@v2
         with:
            fetch-depth: 0
       - name: "Run Tests"
         run: |
           sudo luarocks make
-          lua run_unit_tests.lua
+          tools/runtests.sh
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:

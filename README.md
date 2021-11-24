@@ -24,7 +24,7 @@ log.disconnect()
 
 * Logging to `STDOUT`
 * Logging to remote log receiver via a TCP socket
-* Automatic fallback in case socket connection cannot be established
+* Configurable automatic fallback in case socket connection cannot be established
 * Log level control
 * Configurable timestamp format
 * Optional high-resolution timer

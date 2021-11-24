@@ -129,6 +129,24 @@ else
 end
 ```
 
+## Fallback
+
+In case `remotelog` is not able to create the remote logging connection, it has fallback mechanisms built in. The default behavior is to fall through to console logging.
+
+Another option is to silently ignore when no connection is possible, effectively discarding log messages.
+
+Or you can tell `remotelog` to throw an error. Which option you pick depends on what level of failure tolerance your application needs.
+
+**Attention:** Losing log messages is usually not a winning strategy, so the silent option is only useful in very rare corner cases. Choose wisely.
+
+One way you can pick the desired fallback method is via the optional third parameter of the `init` function:
+
+```lua
+log.init(date_pattern, false, log.fallback_strategies.ERROR)
+```
+
+If you omit the third parameter, the default strategy is to fall back to console logging.
+
 ## Exasol-specifics
 
 The `remotelog` Lua module was initially created to support logging from within Lua scripts that run on the [Exasol](https://www.exasol.com) database.
