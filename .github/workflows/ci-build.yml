@@ -15,7 +15,7 @@ jobs:
           sudo apt-get -y install lua${{ matrix.lua_version }} liblua${{ matrix.lua_version }} lua-any
           wget http://http.us.debian.org/debian/pool/main/l/luarocks/luarocks_3.8.0+dfsg1-1_all.deb
           sudo dpkg -i luarocks_3.8.0+dfsg1-1_all.deb
-          sudo luarocks install --deps-only *.rockspec
+          sudo luarocks install --deps-only $(find -name '*.rockspec')
       - uses: actions/checkout@v2
         with:
            fetch-depth: 0
