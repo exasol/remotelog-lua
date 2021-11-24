@@ -12,15 +12,10 @@ jobs:
       - name: "Install dependencies"
         run: |
           sudo apt-get update
-          sudo apt-get -y install lua${{ matrix.lua_version }}
-          sudo apt-get -y install liblua${{ matrix.lua_version }}
-          sudo apt-get -y install luarocks
-          sudo luarocks install luacheck
-          sudo luarocks install luacov
-          sudo luarocks install luacov-coveralls
-          sudo luarocks install luaunit
-          sudo luarocks install mockagne
-          sudo luarocks install luasocket
+          sudo apt-get -y install lua${{ matrix.lua_version }} liblua${{ matrix.lua_version }} luarocks
+          for module in luacheck luacov lua-coveralls luaunit mockagne luasocket
+             sudo luarocks install "$module"
+          done
       - uses: actions/checkout@v2
         with:
            fetch-depth: 0
