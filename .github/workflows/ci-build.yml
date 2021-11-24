@@ -4,7 +4,7 @@ on: [push]
 jobs:
   build:
     strategy:
-       fail-fast: false
+       fail-fast: true
        matrix:
           lua_version: [5.1, 5.2, 5.3]
     runs-on: ubuntu-latest
