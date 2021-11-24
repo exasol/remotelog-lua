@@ -1,3 +1,5 @@
+rockspec_format = "3.0"
+
 package = "remotelog"
 version = "1.1.0-1"
 
@@ -29,11 +31,8 @@ description = {
 
 dependencies = {"lua >= 5.1, < 5.4", "luasocket > 2.0.2-6"}
 
--- With support for LuaRocks 3 we will enable the following configuration option. Right now LuaRocks 2 is still the
--- current version on Ubuntu, so it is too early for this.
---
--- rockspec_format = "3.0"
--- build_dependencies = {"luaunit >= 3.3-1", "mockagne >= 1.0-1 "}
+build_dependencies = {"luacheck >= 0.25.0", "luacov >= 0.15.0", "luacov-coveralls >= 0.2.3", "luaunit >= 3.4",
+     "mockagne >= 1.0-2"}
 
 build = {
     type = "builtin",

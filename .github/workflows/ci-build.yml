@@ -4,22 +4,23 @@ on: [push]
 jobs:
   build:
     strategy:
-       fail-fast: false
+       fail-fast: true
        matrix:
           lua_version: [5.1, 5.2, 5.3]
     runs-on: ubuntu-latest
     steps:
-      - name: "Install dependencies"
+      - name: "Install prerequisites"
         run: |
           sudo apt-get update
-          sudo apt-get -y install lua${{ matrix.lua_version }} liblua${{ matrix.lua_version }} luarocks
-          for module in luacheck luacov luacov-coveralls luaunit mockagne luasocket
-          do
-             sudo luarocks install "$module"
-          done
+          sudo apt-get -y install lua${{ matrix.lua_version }} liblua${{ matrix.lua_version }} lua-any
+          wget http://http.us.debian.org/debian/pool/main/l/luarocks/luarocks_3.8.0+dfsg1-1_all.deb
+          sudo dpkg -i luarocks_3.8.0+dfsg1-1_all.deb
       - uses: actions/checkout@v2
         with:
            fetch-depth: 0
+      - name: "Install Lua dependencies"
+        run: |
+          sudo luarocks install --deps-only *.rockspec 
       - name: "Run Tests"
         run: |
           sudo luarocks make
