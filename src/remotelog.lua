@@ -68,15 +68,6 @@ function M.set_client_name(log_client_name)
     M.log_client_name = log_client_name
 end
 
----
--- Set the fallback strategy.
---
--- @param fallback_strategy what to do if the remote listener connection cannot be established (default: console log)
---
-function M.set_fallback_strategy(strategy)
-    M.fallback_strategy = strategy
-end
-
 local function start_high_resolution_timer()
     if M.use_high_resolution_time then
         M.start_nanos = socket.gettime()

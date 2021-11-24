@@ -48,13 +48,6 @@ function test_fallback:test_fallback_raise_error()
         log.connect, "localhost", 3000)
 end
 
-function test_fallback:test_set_fallback_strategy()
-    local log = self.log.init(date_pattern, false)
-    log.set_fallback_strategy(log.fallback_strategies.ERROR)
-    luaunit.assertError("Unable to open socket connection to localhost:3000 for sending log messages",
-        log.connect, "localhost", 3000)
-end
-
 function test_fallback:test_fallback_on_info_message()
     local log = self.log
     log.init(date_pattern, false, self.log.FALLBACK_CONSOLE)
