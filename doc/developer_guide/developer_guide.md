@@ -6,9 +6,15 @@ This document contains developer information on how to build, run, modify and pu
 
 This project needs a Lua interpreter &ge; Lua 5.1.
 
-## Lua Rocks 3
+### Lua Rocks 3
 
-To install the dependencies you also need the [LuaRocks](https://luarocks.org/) package manager. While LuaRocks version 3 is already available for quite a while, it has not yet reached all package repostories.
+To install the Lua dependencies you also need the [LuaRocks](https://luarocks.org/) package manager. While LuaRocks version 3 is already available for quite a while, it has not yet reached all package repositories. Check the `.rockspec` file for a list of all Lua dependencies.
+
+You can install the dependencies with:
+
+```bash
+luarocks install --deps-only *.rockspec
+```
 
 ### Installing on Ubuntu 21.10
 
