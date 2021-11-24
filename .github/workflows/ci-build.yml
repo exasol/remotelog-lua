@@ -23,7 +23,7 @@ jobs:
       - name: "Run Tests"
         run: |
           sudo luarocks make
-          lua run_unit_tests.lua
+          tools/runtests.sh
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:

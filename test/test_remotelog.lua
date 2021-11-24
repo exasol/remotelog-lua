@@ -1,3 +1,5 @@
+package.path = "src/?.lua;" .. package.path
+
 local luaunit = require("luaunit")
 local mockagne = require("mockagne")
 
@@ -12,7 +14,7 @@ function test_log:setUp()
     self.tcp_mock = mockagne.getMock()
     self.client_mock = self.tcp_mock -- on connect(), the socket library promotes a TCP socket to a client socket
     when(self.socket_mock.tcp()).thenAnswer(self.tcp_mock)
-    when(self.tcp_mock:connect(any(), any())).thenAnswer(1)
+    when(self.tcp_mock:connect(any(), any())).thenAnswer(true)
     when(self.socket_mock.gettime()).thenAnswer(1000000)
     package.preload["socket"] = function () return self.socket_mock end
     self.log = require("remotelog").init(date_pattern, false)
@@ -97,13 +99,13 @@ function test_log:test_set_level_to_illegal_value_throws_error()
         'Pick one of: NONE, FATAL, ERROR, WARN, INFO, CONFIG, DEBUG, TRACE. Falling back to level INFO.\n')
 end
 
-function test_log:test_init_changes_timestamp_pattern()
+function test_log.test_init_changes_timestamp_pattern()
     package.loaded["remotelog"] = nil
     local log = require("remotelog").init("%Y-%m-%d", false)
     luaunit.assertEquals(log.timestamp_pattern, "%Y-%m-%d")
 end
 
-function test_log:test_init_does_not_touch_timestamp_pattern_when_nil()
+function test_log.test_init_does_not_touch_timestamp_pattern_when_nil()
     package.loaded["remotelog"] = nil
     local log = require("remotelog").init(nil, false)
     luaunit.assertEquals(log.timestamp_pattern, "%Y-%m-%d %H:%M:%S")
