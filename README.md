@@ -36,6 +36,10 @@ log.disconnect()
 * [User Guide](doc/user_guide/user_guide.md)
 * [Changelog](doc/changes/changelog.md)
 
+## Information for Developers
+
+* [Developer Guide](doc/developer_guide/developer_guide.md)
+
 ### Run Time Dependencies
 
 `remotelog` requires Lua 5.1 or later.
