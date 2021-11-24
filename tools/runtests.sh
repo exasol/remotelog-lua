@@ -6,7 +6,7 @@ set -o pipefail
 # This script finds and runs Lua unit tests, collects coverage and runs static code analysis.
 
 readonly script_dir=$(dirname "$(readlink -f "$0")")
-if [[ -v $1 ]]
+if [[ ${1+x} ]]
 then
     readonly base_dir="$1"
 else
@@ -32,7 +32,7 @@ function create_target_directories {
 # Return error status in case there were failures.
 #
 function run_tests {
-    cd "$test_module_path" || exit
+    cd "$test_module_path" || exit "$exit_software"
     readonly tests="$(find . -name '*.lua')"
     test_suites=0
     failures=0
