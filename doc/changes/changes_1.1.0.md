@@ -14,6 +14,14 @@ Check the [user guide](../user_guide/user_guide.md) for more details.
 
 We also added a [developer guide](../developer_guide/developer_guide.md) that helps you setting up and building the project and migrated the CI build from Travis CI to GitHub Actions.
 
+### Features
+
+* #5: Made fallback configurable.
+
 ### Documentation
 
 * #4: Added developer guide.
+
+### Refactoring
+
+* #13: Migrated to GitHub actions.
