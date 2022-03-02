@@ -29,7 +29,7 @@ description = {
     maintainer = 'Exasol <opensource@exasol.com>'
 }
 
-dependencies = {"lua >= 5.1, < 5.4", "luasocket > 2.0.2-6"}
+dependencies = {"lua >= 5.1, < 5.5", "luasocket > 2.0.2-6"}
 
 build_dependencies = {"luacheck >= 0.25.0", "luacov >= 0.15.0", "luacov-coveralls >= 0.2.3", "luaunit >= 3.4",
      "mockagne >= 1.0-2"}
