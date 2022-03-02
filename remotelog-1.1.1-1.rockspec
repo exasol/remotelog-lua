@@ -1,11 +1,11 @@
 rockspec_format = "3.0"
 
 package = "remotelog"
-version = "1.1.0-1"
+version = "1.1.1-1"
 
 source = {
     url = 'git://github.com/exasol/remotelog-lua',
-    tag = "1.1.0"
+    tag = "1.1.1"
 }
 
 description = {

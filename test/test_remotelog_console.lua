@@ -31,8 +31,8 @@ local function assert_message(call, original_message, expected_message)
     luaunit.assertEquals(actual_message, expected_message)
 end
 
-local function assert_no_message(call, original_message)
-    local actual_message = trace.trace_print(call, original_message)
+local function assert_no_message(call)
+    local actual_message = trace.trace_print(call, "This message is not sent.")
     luaunit.assertNil(actual_message)
 end
 
@@ -40,16 +40,56 @@ function test_console_log:test_fatal()
     assert_message(self.log.fatal, "Good by, cruel world!", self.today .. " [FATAL]  Good by, cruel world!")
 end
 
+function test_console_log:test_fatal_exact_level()
+    self.log.set_level("FATAL")
+    assert_message(self.log.fatal, "Good by, cruel world!", self.today .. " [FATAL]  Good by, cruel world!")
+end
+
+function test_console_log:test_fatal_not_logged()
+    self.log.set_level("NONE")
+    assert_no_message(self.log.fatal)
+end
+
 function test_console_log:test_error()
     assert_message(self.log.error, "Oops!", self.today .. " [ERROR]  Oops!")
+end
+
+function test_console_log:test_error_exact_level()
+    self.log.set_level("ERROR")
+    assert_message(self.log.error, "Oops!", self.today .. " [ERROR]  Oops!")
+end
+
+function test_console_log:test_error_not_logged()
+    self.log.set_level("FATAL")
+    assert_no_message(self.log.error)
 end
 
 function test_console_log:test_warn()
     assert_message(self.log.warn, "This looks suspicious...", self.today .. " [WARN]   This looks suspicious...")
 end
 
+function test_console_log:test_warn_exact_level()
+    self.log.set_level("WARN")
+    assert_message(self.log.warn, "This looks suspicious...", self.today .. " [WARN]   This looks suspicious...")
+end
+
+function test_console_log:test_warn_not_logged()
+    self.log.set_level("ERROR")
+    assert_no_message(self.log.warn)
+end
+
 function test_console_log:test_info()
     assert_message(self.log.info, "Good to know.", self.today .. " [INFO]   Good to know.")
+end
+
+function test_console_log:test_info_exact_level()
+    self.log.set_level("INFO")
+    assert_message(self.log.info, "Good to know.", self.today .. " [INFO]   Good to know.")
+end
+
+function test_console_log:test_info_not_logged()
+    self.log.set_level("WARN")
+    assert_no_message(self.log.info)
 end
 
 function test_console_log:test_config()
@@ -57,9 +97,19 @@ function test_console_log:test_config()
     assert_message(self.log.config, "Life support enabled.", self.today .. " [CONFIG] Life support enabled.")
 end
 
+function test_console_log:test_config_not_logged()
+    self.log.set_level("INFO")
+    assert_no_message(self.log.config)
+end
+
 function test_console_log:test_debug()
     self.log.set_level("DEBUG")
     assert_message(self.log.debug, "Look what we have here.", self.today .. " [DEBUG]  Look what we have here.")
+end
+
+function test_console_log:test_debug_not_logged()
+    self.log.set_level("INFO")
+    assert_no_message(self.log.debug)
 end
 
 function test_console_log:test_trace()
@@ -67,9 +117,14 @@ function test_console_log:test_trace()
     assert_message(self.log.trace, "foo(bar)", self.today .. " [TRACE]  foo(bar)")
 end
 
+function test_console_log:test_trace_not_logged()
+    self.log.set_level("DEBUG")
+    assert_no_message(self.log.trace)
+end
+
 function test_console_log:test_set_log_level()
     self.log.set_level("WARN")
-    assert_no_message(self.log.info, "don't send")
+    assert_no_message(self.log.info)
     assert_message(self.log.warn, "send", self.today .. " [WARN]   send")
 end
 

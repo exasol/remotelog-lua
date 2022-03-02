@@ -74,10 +74,22 @@ function test_log:test_debug()
     self:assert_message(self.today .. " [DEBUG]  Look what we have here.\n")
 end
 
+function test_log:test_debug_not_logged()
+    self.log.set_level("INFO")
+    self.log.debug("don't send")
+    self:assert_no_message(self.today .. " [DEBUG]  don't send\n")
+end
+
 function test_log:test_trace()
     self.log.set_level("TRACE")
     self.log.trace("foo(bar)")
     self:assert_message(self.today .. " [TRACE]  foo(bar)\n")
+end
+
+function test_log:test_trace_not_logged()
+    self.log.set_level("DEBUG")
+    self.log.trace("don't send")
+    self:assert_no_message(self.today .. " [TRACE]  don't send\n")
 end
 
 function test_log:test_set_log_level()
