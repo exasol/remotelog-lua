@@ -22,11 +22,19 @@ jobs:
         uses: leafo/gh-actions-luarocks@v4
         with:
           luarocksVersion: "3.8.0"
+      - name: Print versions
+        run: |
+          ./.lua/bin/luarocks path
+          eval $(./.lua/bin/luarocks path)
+          lua -v
+          luarocks --version
       - name: "Install Lua dependencies"
         run: |
+          eval $(./.lua/bin/luarocks path)
           sudo luarocks install --deps-only *.rockspec
       - name: "Run Tests"
         run: |
+          eval $(./.lua/bin/luarocks path)
           sudo luarocks make
           tools/runtests.sh
       - name: Archive code coverage results
