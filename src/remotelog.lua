@@ -14,7 +14,7 @@ local fallback_strategies = {CONSOLE = 1, DISCARD = 2, ERROR = 3}
 -- </p>
 --
 local M = {
-    VERSION = "1.1.0",
+    VERSION = "1.1.1",
     level = levels.INFO,
     socket_client = nil,
     connection_timeout = 0.1, -- seconds
@@ -306,7 +306,7 @@ end
 -- @param ... log message or message pattern with placeholders and values
 --
 function M.trace(...)
-    if M.level >= levels.FATAL then
+    if M.level >= levels.TRACE then
         write("TRACE", ...)
     end
 end
