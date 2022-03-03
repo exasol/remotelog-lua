@@ -27,17 +27,14 @@ jobs:
           luarocksVersion: "3.8.0"
       - name: Print versions
         run: |
-          PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
           lua -v
           luarocks --version
           luarocks path
       - name: "Install Lua dependencies"
         run: |
-          PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
           luarocks install --local --deps-only *.rockspec
       - name: "Run Tests"
         run: |
-          PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
           eval $(luarocks path)
           luarocks make --local
           tools/runtests.sh
