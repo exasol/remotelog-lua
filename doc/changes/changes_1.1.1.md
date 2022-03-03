@@ -1,4 +1,4 @@
-# remotelog-lua 1.1.1, released 2022-03-??
+# remotelog-lua 1.1.1, released 2022-03-03
 
 Code name: Fix filtering of `trace` messages and support Lua 5.4
 
