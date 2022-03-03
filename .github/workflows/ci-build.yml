@@ -24,16 +24,18 @@ jobs:
           luarocksVersion: "3.8.0"
       - name: Print versions
         run: |
-          ./.lua/bin/lua -v
-          ./.luarocks/bin/luarocks --version
-          ./.luarocks/bin/luarocks path
+          PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
+          lua -v
+          luarocks --version
+          luarocks path
       - name: "Install Lua dependencies"
         run: |
-          eval $(./.luarocks/bin/luarocks path)
+          PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
           sudo luarocks install --deps-only *.rockspec
       - name: "Run Tests"
         run: |
-          eval $(./.luarocks/bin/luarocks path)
+          PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
+          eval $(luarocks path)
           sudo luarocks make
           tools/runtests.sh
       - name: Archive code coverage results
