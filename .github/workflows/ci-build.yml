@@ -3,6 +3,9 @@ name: CI Build
 on: [push]
 jobs:
   build:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     strategy:
        fail-fast: true
        matrix:
@@ -24,12 +27,6 @@ jobs:
           luarocksVersion: "3.8.0"
       - name: Print versions
         run: |
-          pwd
-          ls
-          ls .lua
-          ls .luarocks
-          ls .lua/bin
-          ls .luarocks/bin
           PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
           lua -v
           luarocks --version
@@ -37,12 +34,12 @@ jobs:
       - name: "Install Lua dependencies"
         run: |
           PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
-          sudo luarocks install --deps-only *.rockspec
+          luarocks install --local --deps-only *.rockspec
       - name: "Run Tests"
         run: |
           PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
           eval $(luarocks path)
-          sudo luarocks make
+          luarocks make --local
           tools/runtests.sh
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
