@@ -21,7 +21,7 @@ jobs:
            fetch-depth: 0
       - name: "Install Lua dependencies"
         run: |
-          sudo luarocks install --deps-only *.rockspec 
+          sudo luarocks install --deps-only *.rockspec
       - name: "Run Tests"
         run: |
           sudo luarocks make
