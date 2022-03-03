@@ -3,13 +3,13 @@ name: CI Build
 on: [push]
 jobs:
   build:
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
     strategy:
        fail-fast: true
        matrix:
           lua_version: [5.1, 5.2, 5.3, 5.4]
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-lua-${{ matrix.lua_version }}
+      cancel-in-progress: true
     name: "Build with Lua ${{ matrix.lua_version }}"
     runs-on: ubuntu-latest
     steps:
