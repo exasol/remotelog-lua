@@ -24,6 +24,12 @@ jobs:
           luarocksVersion: "3.8.0"
       - name: Print versions
         run: |
+          pwd
+          ls
+          ls .lua
+          ls .luarocks
+          ls .lua/bin
+          ls .luarocks/bin
           PATH=$PATH:./.lua/bin/lua/:./.luarocks/bin/
           lua -v
           luarocks --version
