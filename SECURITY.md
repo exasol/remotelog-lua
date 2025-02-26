@@ -6,7 +6,7 @@ If you believe you have found a new security vulnerability in this repository, p
 
 * Please do **not** report security vulnerabilities through public GitHub issues.
 
-* Please create a draft security advisory on the Github page of the repository. You can find the reporting form under `> Security > Advisories` section of the repository home page. The URL is [https://github.com/exasol/remotelog-lua/security/advisories](https://github.com/exasol/remotelog-lua/security/advisories).
+* Please create a draft security advisory on the Github page: the reporting form is under `> Security > Advisories`. The URL is https://github.com/exasol/remotelog-lua/security/advisories/new.
 
 * If you prefer to email, please send your report to `infosec@exasol.com`.
 
